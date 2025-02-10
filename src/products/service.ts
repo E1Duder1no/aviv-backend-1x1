@@ -1,18 +1,21 @@
+import productsRepository from "./repository";
+
 const productsService = {
     async findAll() {
-        return []
+        return await productsRepository.findAll();
     },
     async findById(id: string) {
-        return []
+        return await productsRepository.findById(id);
     },
+    //TODO: we should add type
     async create(data: any) {
-        return []
+        return await productsRepository.create(data)
     },
     async updateById(id: string, data: any) {
-        return []
+        return await productsRepository.updateById(id, data);
     },
     async deleteById(id: string) {
-        return []
+        return await productsRepository.deleteById(id);
     },
 }
 

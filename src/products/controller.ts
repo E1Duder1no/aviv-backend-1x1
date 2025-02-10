@@ -23,8 +23,7 @@ const productsController: IProductsController = {
         res.status(201).json(response);
     },
     updateOne: async (req, res) => {
-        await productsService.updateById(req.params.id, req.body);
-        const updatedProduct = productsService.findById(req.params.id);
+        const updatedProduct = await productsService.updateById(req.params.id, req.body);
         res.status(204).json(updatedProduct);
     },
     deleteOne: async (req, res) => {
