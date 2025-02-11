@@ -1,11 +1,12 @@
 import ProductModel from "./model";
 import {ProductAttributes} from "./types";
+import createHttpError from "http-errors";
 
 const productsRepository = {
     async findAll() {
         const {rows, count} = await ProductModel.findAndCountAll();
         return {
-            products: rows.map((product:any) => product.toJSON()),
+            products: rows.map((product: any) => product.toJSON()),
             count
         };
     },
@@ -21,7 +22,7 @@ const productsRepository = {
     },
     async deleteById(id: string) {
         const isDeleted = await ProductModel.destroy({where: {id}})
-        if (!isDeleted) throw new Error("Product not found");
+        if (!isDeleted) throw new createHttpError.NotFound(`product ${id} does not exist`);
         return isDeleted;
     },
 }
