@@ -1,4 +1,4 @@
-import { Model, Optional} from "sequelize";
+import {Model, Optional} from "sequelize";
 
 export interface ProductAttributes {
     id: string;
@@ -8,7 +8,8 @@ export interface ProductAttributes {
 }
 
 interface ProductCreationAttributes
-    extends Optional<ProductAttributes, 'id'> {}
+    extends Optional<ProductAttributes, 'id'> {
+}
 
 export interface ProductInstance
     extends Model<ProductAttributes, ProductCreationAttributes>,

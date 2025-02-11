@@ -1,8 +1,8 @@
-import {sequelize} from './db'
+import {productsDBConnection} from './db'
 import {DataTypes} from "sequelize";
 import {ProductInstance} from "./types";
 
-const ProductModel = sequelize.define<ProductInstance>("products", {
+const ProductModel = productsDBConnection.define<ProductInstance>("products", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

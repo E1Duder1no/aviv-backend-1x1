@@ -1,16 +1,21 @@
 import {Sequelize} from "sequelize";
 
-export const sequelize = new Sequelize({
+export const productsDBConnection = new Sequelize({
     dialect: 'sqlite',
     storage: './src/products/database.sqlite'
 });
 
-export const connectDB = async () => {
-    try {
-        await sequelize.sync();
-        await sequelize.authenticate();
-        console.log("Connected to database");
-    } catch (e) {
-        console.error("Failed to connect to database", e);
-    }
+export const productsDB = {
+    $connect : async () => {
+        try {
+            await productsDBConnection.sync();
+        } catch (e) {
+            console.error("Failed to connect to products database", e);
+        }
+    },
+    $close: async () => {
+        await productsDBConnection.close();
+        console.info("Closing connection to products database.");
+    },
+    connection: productsDBConnection
 };
